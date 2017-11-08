@@ -14,15 +14,16 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
+  //get the ip and language from the request. Get  
   var ip = (request.header('x-forwarded-for') || request.connection.remoteAddress).split(",")[0];
   var lang = request.headers['accept-language'].split(",")[0];
-  
-  var test = {
+  var operating_system = os.platform()
+  var json = {
     address: ip,
     language: lang,
-    OS: os.platform()
+    OS: operating_system
   };
-  response.json(test);
+  response.json(json);
 });
 
 
